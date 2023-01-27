@@ -72,8 +72,11 @@ class TestRecVec(unittest.TestCase):
         self.assertEqual(rv.mag(),(5))
         print("Passed get_mag")
 
-#   def test_get_ang(self):
-
+    def test_get_ang(self):
+        """Tests that the angle returned is correct"""
+        rv = RecVec(3,4)
+        self.assertEqual(rv.ang(),53)
+        print("Passes get_ang")
 
 # class TestPolVec(unittest.TestCase):
 #     def test_init(self):
