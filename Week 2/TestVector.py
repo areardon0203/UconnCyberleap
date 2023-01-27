@@ -28,7 +28,7 @@ class TestRecVec(unittest.TestCase):
     def test_eq(self):
         """Tests that two tuples are eqivelant"""
         v1 = RecVec(3,4)
-        v2 = RecVec(3,4)
+        v2 = RecVec(7-4,4)
         self.assertEqual(v1.x,v2.x)
         self.assertEqual(v1.y,v2.y)
         print("Passed Equal")
