@@ -3,8 +3,7 @@ import math
 from Vector import RecVec #PolVec
 
 class TestRecVec(unittest.TestCase):
-    """Test the class RecVec in the file Vector.py"""
-   
+    """Test the class RecVec in the file Vector.py"""   
     def test_init(self):
         """Tests that the initialization of object creation is receiving proper values."""
         rv = RecVec(3,4)
@@ -46,6 +45,7 @@ class TestRecVec(unittest.TestCase):
         rv = RecVec(3,4)
         recPol = rv.pol()
         self.assertEqual(recPol,(5, 53))
+        print("Passed polar coordinate conversion!")
 
     def test_rec(self):
         """Tests to make sure that the rectangular coordinates are returned in a tuple"""

@@ -19,7 +19,7 @@ class RecVec:
 
     def pol(self):
         mag = int(math.sqrt(self.x**2 + self.y **2))
-        ang = int(math.atan(self.y/self.x))
+        ang = int(math.degrees(math.atan(self.y/self.x)))
         return (mag, ang)
 
 
