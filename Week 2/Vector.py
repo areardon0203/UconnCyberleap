@@ -1,3 +1,4 @@
+import math
 
 class RecVec:
     """Creates a class for making rectangle vectors"""
@@ -14,11 +15,12 @@ class RecVec:
 
     def __str__(self):
         """Converts the default string behavior into a readable output with the proper formatting"""
-        return "RecVec(x = {} y = {})".format(self.x,self.y)
+        return f"RecVec(x = {self.x} y = {self.y})"
         
     def mag(self):
         """Returns the magnitude based off of the x and y coordinates created in the initialization phase."""
-        return (self.x**2 + self.y**2)*0.5**2
+        # return  (self.x**2 + self.y**2)*(0.5**2)
+        return math.sqrt(self.x**2 + self.y**2)
 
 class PolVec:
 

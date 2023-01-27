@@ -1,4 +1,5 @@
 import unittest
+import math
 from Vector import RecVec, PolVec
 
 class TestRecVec(unittest.TestCase):
@@ -37,7 +38,7 @@ class TestRecVec(unittest.TestCase):
     def test_str(self):
         """Tests that we are returning a readable string."""
         rv = RecVec(3,4)
-        self.assertEqual(str(rv),"RecVec(x = {} y = {})".format(rv.x,rv.y))
+        self.assertEqual(str(rv), f"RecVec(x = {rv.x} y = {rv.y})")
         print("String Test Passed!")
         
 #     def test_pol(self):
@@ -53,7 +54,7 @@ class TestRecVec(unittest.TestCase):
         """Tests to make sure that the objects magnitude is properly returned"""
         rv = RecVec(3,4)
         magnitude = rv.mag()
-        self.assertEqual(magnitude,(rv.x**2 + rv.y**2)*0.5**2)
+        self.assertEqual(magnitude,(5))
         print("Get Mag Passed")
 
 #   def test_get_ang(self):
@@ -64,6 +65,6 @@ class TestPolVec(unittest.TestCase):
         pv = PolVec(6,10)
         self.assertEqual(pv.mag, 6)
         self.assertEqual(pv.angle, 10)
-        print("PolVec Test Passed!")
+        print("PolVec INIT Test Passed!")
 
 unittest.main()
