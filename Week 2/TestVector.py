@@ -1,6 +1,6 @@
 import unittest
 import math
-from Vector import RecVec, PolVec
+from Vector import RecVec #PolVec
 
 class TestRecVec(unittest.TestCase):
     """Test the class RecVec in the file Vector.py"""
@@ -29,6 +29,7 @@ class TestRecVec(unittest.TestCase):
         print("Passed Subtraction")
 
     def test_eq(self):
+        """Tests that two tuples are eqivelant"""
         v1 = RecVec(3,4)
         v2 = RecVec(3,4)
         self.assertEqual(v1.x,v2.x)
@@ -41,30 +42,44 @@ class TestRecVec(unittest.TestCase):
         self.assertEqual(str(rv), f"RecVec(x = {rv.x} y = {rv.y})")
         print("String Test Passed!")
         
-#     def test_pol(self):
+    def test_pol(self):
+        rv = RecVec(3,4)
+        recPol = rv.pol()
+        self.assertEqual(recPol,(5, 53))
 
-#     def test_rec(self):
+    def test_rec(self):
+        """Tests to make sure that the rectangular coordinates are returned in a tuple"""
+        rec = RecVec(3,4)
+        recCor = RecVec.rectangular(rec)
+        self.assertEqual(recCor, (3,4))
+        print("test passed Rec")
 
-#     def test_get_x(self):
-
+    def test_get_x(self):
+        """Tests that the value of x is returned properly as a single value"""
+        rv = RecVec(3,4)
+        self.assertEqual(rv.get_x(),3)
+        print("test passed get x")
     
-#     def test_get_y(self):
+    def test_get_y(self):
+        """Tests that the value of y is returned properly as a single value"""
+        rv = RecVec(3,4)
+        self.assertEqual(rv.get_y(),4)
+        print("test passed get y")
 
     def test_get_mag(self):
         """Tests to make sure that the objects magnitude is properly returned"""
         rv = RecVec(3,4)
-        magnitude = rv.mag()
-        self.assertEqual(magnitude,(5))
+        self.assertEqual(rv.mag(),(5))
         print("Get Mag Passed")
 
 #   def test_get_ang(self):
 
 
-class TestPolVec(unittest.TestCase):
-    def test_init(self):
-        pv = PolVec(6,10)
-        self.assertEqual(pv.mag, 6)
-        self.assertEqual(pv.angle, 10)
-        print("PolVec INIT Test Passed!")
+# class TestPolVec(unittest.TestCase):
+#     def test_init(self):
+#         pv = PolVec(6,10)
+#         self.assertEqual(pv.mag, 6)
+#         self.assertEqual(pv.ang, 10)
+#         print("PolVec INIT Test Passed!")
 
 unittest.main()

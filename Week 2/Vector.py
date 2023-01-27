@@ -16,14 +16,31 @@ class RecVec:
     def __str__(self):
         """Converts the default string behavior into a readable output with the proper formatting"""
         return f"RecVec(x = {self.x} y = {self.y})"
-        
+
+    def pol(self):
+        mag = int(math.sqrt(self.x**2 + self.y **2))
+        ang = int(math.atan(self.y/self.x))
+        return (mag, ang)
+
+
+    def rectangular(self):
+        """Returns the rectangular coordinates in a tuple"""
+        return (self.x, self.y)
+
+    def get_x(self):
+        """Gets the x value from the initialized object"""
+        return self.x
+
+    def get_y(self):
+        """Gets the y value from the initialized object"""
+        return self.y
+
     def mag(self):
         """Returns the magnitude based off of the x and y coordinates created in the initialization phase."""
-        # return  (self.x**2 + self.y**2)*(0.5**2)
         return math.sqrt(self.x**2 + self.y**2)
 
-class PolVec:
+# class PolVec:
+#     def __init__(self,mag=1, ang=2):
+#         self.mag = mag
+#         self.ang = ang
 
-    def __init__(self,mag=1, angle=2):
-        self.mag = mag
-        self.angle = angle
