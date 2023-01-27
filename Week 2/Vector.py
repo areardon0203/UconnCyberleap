@@ -39,8 +39,8 @@ class RecVec:
         """Returns the magnitude based off of the x and y coordinates created in the initialization phase."""
         return math.sqrt(self.x**2 + self.y**2)
 
-# class PolVec:
-#     def __init__(self,mag=1, ang=2):
-#         self.mag = mag
-#         self.ang = ang
+class PolVec:
+    def __init__(self,mag=1, ang=2):
+         self.mag = mag
+         self.ang = ang
 
