@@ -1,6 +1,6 @@
 import unittest
 import math
-from Vector import RecVec #PolVec
+from Vector import RecVec, PolVec
 
 class TestRecVec(unittest.TestCase):
     """Test the class RecVec in the file Vector.py"""   
@@ -13,18 +13,16 @@ class TestRecVec(unittest.TestCase):
     
     def test_add(self):
         """Tests that the add function is returning an appropriate tuple"""
-        v1 = (3,4)
-        v2 = (7,8)
-        added = RecVec.__add__(self,v1,v2)
-        self.assertEqual(added, (10,12))
+        v1 = RecVec(3,4)
+        v2 = RecVec (7,8)
+        self.assertEqual(RecVec.__add__(v1,v2), (10,12))
         print("Passed add")
 
     def test_sub(self):
         """Tests that the add function is returning an appropriate tuple"""
-        v1 = (7,8)
-        v2 = (3,4)
-        subtracted = (RecVec.__sub__(self,v1,v2))
-        self.assertEqual(subtracted, (4,4))
+        v1 = RecVec(7,8)
+        v2 = RecVec(3,4)
+        self.assertEqual(RecVec.__sub__(v1,v2), (4,4))
         print("Passed Subtraction")
 
     def test_eq(self):
@@ -38,7 +36,7 @@ class TestRecVec(unittest.TestCase):
     def test_str(self):
         """Tests that we are returning a readable string."""
         rv = RecVec(3,4)
-        self.assertEqual(str(rv), f"RecVec(x = {rv.x} y = {rv.y})")
+        self.assertEqual(str(rv), f"RecVec(x = 3 y = 4)")
         print("Passed String Test")
         
     def test_pol(self):
@@ -78,11 +76,19 @@ class TestRecVec(unittest.TestCase):
         self.assertEqual(rv.ang(),53)
         print("Passes get_ang")
 
-# class TestPolVec(unittest.TestCase):
-#     def test_init(self):
-#         pv = PolVec(6,10)
-#         self.assertEqual(pv.mag, 6)
-#         self.assertEqual(pv.ang, 10)
-#         print("PolVec INIT Test Passed!")
+class TestPolVec(unittest.TestCase):
+    def test_init(self):
+        pv = PolVec(4,30)
+        self.assertEqual(pv.mag, 4)
+        self.assertEqual(pv.ang, 30)
+        print("PolVec INIT Test Passed!")
+
+    # def test_add(self):
+    #     pv1 = PolVec(4,30)
+    #     pv2 = PolVec(2,40)
+    #     added = PolVec.__add__(pv1,pv2)
+    #     self.assertEqual(added, (6,70))
+    #     print("Passed pv_add")
+         
 
 unittest.main()

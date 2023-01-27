@@ -7,11 +7,11 @@ class RecVec:
         self.x = x
         self.y = y
 
-    def __add__(self,v1,v2):
-        return (v1[0] + v2[0], v1[1] + v2[1])
+    def __add__(self, other):
+        return (self.x + other.x, self.y + other.y)
 
-    def __sub__(self,v1,v2):
-        return(v1[0] - v2[0], v1[1] - v2[1])
+    def __sub__(self,other):
+        return(self.x - other.x, self.y - other.y)
 
     def __str__(self):
         """Converts the default string behavior into a readable output with the proper formatting"""
@@ -43,7 +43,7 @@ class RecVec:
         return int(math.degrees(math.atan(self.y/self.x)))
 
 class PolVec:
-    def __init__(self,mag=1, ang=2):
+    """Creates a class for making polar vectors"""
+    def __init__(self,mag=1, ang=50):
          self.mag = mag
          self.ang = ang
-
