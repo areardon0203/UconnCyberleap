@@ -40,6 +40,7 @@ class TestRecVec(unittest.TestCase):
         print("Passed String Test")
         
     def test_pol(self):
+        """"Tests that we return the correct polar coordinates from rectangular coordinate input"""
         rv = RecVec(3,4)
         recPol = rv.pol()
         self.assertEqual(recPol,(5, 53))
@@ -77,18 +78,12 @@ class TestRecVec(unittest.TestCase):
         print("Passes get_ang")
 
 class TestPolVec(unittest.TestCase):
+    """Test the class RecVec in the file Vector.py"""  
     def test_init(self):
+        """Tests that a Polar Vector object has been created."""
         pv = PolVec(4,30)
         self.assertEqual(pv.mag, 4)
         self.assertEqual(pv.ang, 30)
-        print("PolVec INIT Test Passed!")
-
-    # def test_add(self):
-    #     pv1 = PolVec(4,30)
-    #     pv2 = PolVec(2,40)
-    #     added = PolVec.__add__(pv1,pv2)
-    #     self.assertEqual(added, (6,70))
-    #     print("Passed pv_add")
-         
+        print("PolVec INIT Test Passed!")         
 
 unittest.main()

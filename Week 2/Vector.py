@@ -8,9 +8,11 @@ class RecVec:
         self.y = y
 
     def __add__(self, other):
+        """Adds together two different rectangular vector coordinates."""
         return (self.x + other.x, self.y + other.y)
 
     def __sub__(self,other):
+        """Adds together two different rectangular vector coordinates."""
         return(self.x - other.x, self.y - other.y)
 
     def __str__(self):
@@ -18,10 +20,10 @@ class RecVec:
         return f"RecVec(x = {self.x} y = {self.y})"
 
     def pol(self):
+        """Returns a polar vector from rectangular coordinates"""
         mag = int(math.sqrt(self.x**2 + self.y **2))
         ang = int(math.degrees(math.atan(self.y/self.x)))
         return (mag, ang)
-
 
     def rectangular(self):
         """Returns the rectangular coordinates in a tuple"""
@@ -40,6 +42,7 @@ class RecVec:
         return math.sqrt(self.x**2 + self.y**2)
 
     def ang(self):
+        """Returns the angle from a rectangular vector"""
         return int(math.degrees(math.atan(self.y/self.x)))
 
 class PolVec:
