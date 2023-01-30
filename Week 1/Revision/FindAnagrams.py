@@ -1,7 +1,7 @@
 
 import WordCompare
 
-words = ["tar", "rat", "art", "face", "cafe", "hello"]
+# words = ["tar", "rat", "art", "face", "cafe", "hello"]
 
 def find_anagrams(word): 
     '''
@@ -26,11 +26,24 @@ def find_anagrams(word):
             if WordCompare.word_compare(x,y)=="anagrams":
                 anagrams[x].append(y)
     
-    for key, value in anagrams.items():
-        return(key, value)
+    return [(key, value) for key, value in anagrams.items()]
         
 wordList=["largely", "gallery", "allergy", "alert", "alter", "later", "cow", "cat", "house", "giraffe", "pine","pizza"]
 
 find_anagrams(wordList)
-# expectedresult = []
-# assert find_anagrams(wordList) == expectedresult
+
+expectedresult = [
+('largely', ['gallery', 'allergy']), 
+('gallery', ['largely', 'allergy']),
+('allergy', ['largely', 'gallery']), 
+('alert', ['alter', 'later']),
+('alter', ['alert', 'later']), 
+('later', ['alert', 'alter']),
+('cow', []),
+('cat', []), 
+('house', []), 
+('giraffe', []), 
+('pine', []), 
+('pizza', [])
+]
+assert find_anagrams(wordList) == expectedresult
