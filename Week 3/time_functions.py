@@ -5,12 +5,15 @@ import time
 def time_f(func, n, trials = 10):
     """This runs the function with a value of n 10 times and prints the time for the given variable n"""
     totaltime = 0
+    sortTime= []
     #start = time.time()
     for i in range(trials):
         start = time.time()
         func(list(range(n)))
         totaltime += time.time() - start
-    print(n, "  ",totaltime)
+        sortTime.append(totaltime)
+    lowestTime = sorted(sortTime)
+    print(n, "  ",lowestTime[0])
 
 print("-"*90) 
 print("N    ", "t_const (ms)              ", "t_lin (ms)              ", "t_quad (ms)")
