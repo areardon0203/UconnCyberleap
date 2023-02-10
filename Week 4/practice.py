@@ -1,24 +1,27 @@
-from ds2 import *
 
-class AnotherStack(ListStack):
+
+class Stack:
+    def __init__(self):
+        self._L = []
+
+    def push(self, item):
+        self._L.append(item)
+        
+
     def pop(self):
-        try:
-            return self._L.pop()
-        except IndexError:
-            raise RuntimeError("pop from empty stack...there ain't nothing there!")
-
-s = AnotherStack()
-s.push(5)
-s.pop()
+        return self._L.pop()
 
 
+if __name__ == "__main__":
 
+    s = Stack()
 
-class ListQueue(ListQueueFakeDelete):
-    def dequeue(self):
-        item = self._L[self._head]
-        self._head += 1
-        if self._head > len(self._L)//2:
-            self._L = self._L[self._head:]
-            self._head = 0
-        return item
+    n = 10
+
+    for i in range(n):
+        s.push(i)
+
+    for i in range(n):
+        assert s.pop() == n - 1 - i
+
+    print("all done!")

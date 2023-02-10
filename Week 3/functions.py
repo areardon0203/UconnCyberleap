@@ -14,13 +14,13 @@ def func3(L):
         items.append(i)
     return sorted(items)
 
-def not_in_list(L):
-    """Looks for a number that is not in the given list"""
-    return 50 in L
+# def not_in_list(L):
+#     """Looks for a number that is not in the given list"""
+#     return 50 in L
 
-def in_list(L):
-    """Looks for a number that is within a given list"""
-    return 5 in L
+# def in_list(L):
+#     """Looks for a number that is within a given list"""
+#     return 5 in L
 
-def tuple(L):
-    return (3,4) in L
+# def tuple(L):
+#     return (3,4) in L
