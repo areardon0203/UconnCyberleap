@@ -1,45 +1,25 @@
+class Node:
+    def __init__(self, _item, _next):
+        self._item = _item #whatever item
+        self._next = _next #node or None
 
+    def __str__(self):
+        if self._next is not None:
+            return (f"Node(item = {self._item}, next._item = {self._next._item})")
+        return(f"Node(item = {self._item},  (next = None)")
 
-class Stack:
+class LinkedList:
     def __init__(self):
-        self._L = []
+        self._head = None
+        self._len = 0
 
-    def push(self, item):
-        self._L.append(item)
-        
-
-    def pop(self):
-        return self._L.pop()
+    def add_first(self, item):
+        new_node = Node(item, self._head)   # create new node
+        self._head = new_node               #update LL head
+        self._len += 1
 
     def __len__(self):
-        return len(self._L)
-
-    def peek(self):
-        return self._L[-1]
-
-    def is_empty(self):
-        return len(self._L) == 0
+        return self._len
 
 
-if __name__ == "__main__":
-
-    s = Stack()
-
-    n = 10
-
-    for i in range(n):
-        s.push(i)
-
-    for i in range(n):
-        assert s.pop() == n - 1 - i
-
-    assert s.is_empty()
-
-    for i in range(n):
-        assert len(s) == i
-        s.push(i)
-        assert not s.is_empty()
-
-    assert len(s) == n
-    
-    print("all done!")
+ll= LinkedList()
