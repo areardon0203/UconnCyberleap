@@ -25,3 +25,4 @@ class LinkedList:
 
 
 ll = LinkedList()
+ll.add_to_front(5)
