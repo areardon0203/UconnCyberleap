@@ -1,28 +1,31 @@
 class Node:
     def __init__(self, _data, _next = None):
-        self._data = _data 
-        self._next = _next 
+        self._data = _data
+        self._next = _next
 
-    def __str__(self):
-        if self._next is not None:
-            return (f"self.data = {self._data}, self._next = {self._next._data}")
-        return (f"self.data = {self._data}, self._next = none")
 
 class LinkedList:
+    
     def __init__(self):
         self._head = None
-        self._len = 0
 
-    def add_to_front(self, _data):
-        new_node = Node(_data, self._head)    
+    def add_first(self, _data):
+        new_node = Node(_data)
+        new_node._next = self._head
         self._head = new_node
-        self._len += 1
 
-    def len(self):
-        return self._len
-        
-            
-
+    def printList(self): 
+        current = self._head 
+        print("")
+        while (current): 
+            print (current._data) 
+            current = current._next
+        print("")
 
 ll = LinkedList()
-ll.add_to_front(5)
+
+ll.add_first("car")
+ll.add_first("cat")
+ll.add_first("cow")
+
+ll.printList()
