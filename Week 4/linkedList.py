@@ -58,16 +58,16 @@ class LinkedList:
 #         tail._next = Node(item, None)
 #         self._len += 1
 
-#     def remove_first(self):
-#     #edge case: empty LL
-#         if len(self)== 0: raise IndexError("Cannot remove from empty linked list")
+    def remove_first(self):
+    #edge case: empty LL
+        if len(self)== 0: raise IndexError("Cannot remove from empty linked list")
 
-#     #"typical" case: 1+ nodes
+    #"typical" case: 1+ nodes
 
-#         item = self._head._item         #extract data
-#         self._head = self._head._next   #cut off head
-#         self._len -= 1                  #update length
-#         return item
+        item = self._head._item         #extract data
+        self._head = self._head._next   #cut off head
+        self._len -= 1                  #update length
+        return item
 
 
 if __name__=='__main__':
