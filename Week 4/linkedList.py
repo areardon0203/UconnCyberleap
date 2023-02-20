@@ -21,42 +21,42 @@ class LinkedList:
     def __len__(self):
         return self._len
 
-#     def remove_last(self):
-#         #Edge case: LL is empty
-#         if len(self) == 0:
-#             raise IndexError("Cannot remove from empty linked list")
-#         #Edge case: LL has only 1 item
-#         if len(self) == 1:
-#             #[head] --> None._next
-#             item = self._head._item #retrieve item
-#             self._head = None       #cut off tail( tail is head)
-#             self._len -= 1          #update length
-#             return item             #return item
+    def remove_last(self):
+        #Edge case: LL is empty
+        if len(self) == 0:
+            raise IndexError("Cannot remove from empty linked list")
+        #Edge case: LL has only 1 item
+        if len(self) == 1:
+            #[head] --> None._next
+            item = self._head._item #retrieve item
+            self._head = None       #cut off tail( tail is head)
+            self._len -= 1          #update length
+            return item             #return item
 
-#         #"Typical" case: LL has 2+ items
-#         #find penultimate of linked list
-#         penult = self._head
-#         while penult._next._next is not None:
-#             penult = penult._next
+        #"Typical" case: LL has 2+ items
+        #find penultimate of linked list
+        penult = self._head
+        while penult._next._next is not None:
+            penult = penult._next
 
-#         item = penult._next._item       #retrieve data
-#         penult._next = None             # cut off tail
-#         self._len -= 1                  #update length
-#         return item                     #return item
+        item = penult._next._item       #retrieve data
+        penult._next = None             # cut off tail
+        self._len -= 1                  #update length
+        return item                     #return item
 
-#     def add_last(self, item):
+    def add_last(self, item):
         
-#         #edge case: empty LL
+        #edge case: empty LL
 
-#         if len(self) == 0: return self.add_first(item)
+        if len(self) == 0: return self.add_first(item)
 
-#         #"Typical" case: 1+ nodes in LL
-#         tail = self._head
-#         while tail._next is not None:
-#             tail = tail._next
+        #"Typical" case: 1+ nodes in LL
+        tail = self._head
+        while tail._next is not None:
+            tail = tail._next
         
-#         tail._next = Node(item, None)
-#         self._len += 1
+        tail._next = Node(item, None)
+        self._len += 1
 
     def remove_first(self):
     #edge case: empty LL
