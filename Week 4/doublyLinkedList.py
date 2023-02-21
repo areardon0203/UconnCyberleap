@@ -81,11 +81,6 @@ dll = DoublyLinkedList()
 
 n = 10
 
-# dll.add_first(4)
-# dll.add_first(5)
-# dll.add_first(7)
-# dll.remove_last()
-# dll.remove_first()
 
 for i in range(n): dll.add_first(i)
 for i in range(n): dll.remove_last()
@@ -95,25 +90,5 @@ print("passed test 1")
 for i in range(n): dll.add_last(i)
 for i in range(n): assert dll.remove_first() == i
 
-# dll.printDLL()
+
 print("passed test 2")
-
-# dll.add_first("car")
-# dll.add_first("cat")
-# dll.add_first("pie")
-# dll.add_last("cargo")
-
-# ll.remove_last()
-
-
-# for i in range(n): dll.add_first(i)
-# dll.remove_first()
-# dll.remove_last()
-
-# dll.remove_last()
-# for i in range(n): ll.remove_first() == i
-# print("passed")
-
-# print(ll.get_tail())
-
-# dll.printDLL()
