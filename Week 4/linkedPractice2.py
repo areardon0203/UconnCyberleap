@@ -16,7 +16,7 @@ class LinkedList:
         self.len = 0
 
     def add_first(self, _data):
-        new_node = Node(_data)
+        new_node = Node(_data, self._head)
         new_node._next = self._head
         self._head = new_node
         self.len += 1
