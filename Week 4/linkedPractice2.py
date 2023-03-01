@@ -31,7 +31,38 @@ class LinkedList:
         data = self._head._data
         self._head = self._head._next
         self.len -= 1
-        return
+        return data
+
+    def remove_last(self):
+
+        """edge case empty list"""
+        if len(self) == 0: raise IndexError("Cannot remove from an empty list")
+
+        """edge case only 1 item"""
+        if len(self) == 1:
+            data = self._head._data
+            self._head = None
+            self.len -= 1
+            return data
+
+        """"typical case"""
+        penult = self._head
+        while penult._next._next is not None:
+            penult = penult._next
+        data = penult._next._data
+        penult._next = None
+        self.len -= 1 
+        return data
+
+    def add_last(self, data):
+
+        if len(self) == 0: return self.add_first(data)
+
+        tail = self._head
+        while tail._next is not None:
+            tail = tail._next
+        tail._next = Node(data)
+        self.len += 1
 
     def printLL(self):
         cur = self._head
@@ -45,22 +76,16 @@ class LinkedList:
         print("")
 
 
-ll = LinkedList()
+if __name__ == '__main__':
 
-ll.add_first("car")
-ll.add_first("cat")
-ll.add_first("pie")
-ll.add_first("cargo")
+    ll = LinkedList()
 
+    n = 10
 
-ll.remove_first()
+    for i in range(n): ll.add_first(i)
+    for i in range(n): assert ll.remove_last() == i
+    print("works!")
 
-ll.add_first("protein")
-
-ll.printLL()
-ll.remove_first()
-ll.remove_first()
-ll.remove_first()
-
-ll.printLL()
-ll.remove_first()
+    for i in range(n): ll.add_last(i)
+    for i in range(n): assert ll.remove_first() == i
+    print("second statement works")
