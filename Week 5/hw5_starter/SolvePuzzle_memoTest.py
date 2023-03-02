@@ -28,4 +28,4 @@ def _solve_puzzle(board, idx, solved):
     return solved[idx]
 
 
-# assert memo_solve_puzzle([2,0,0]) == True
+assert memo_solve_puzzle([2,0,0]) == True
