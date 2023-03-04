@@ -21,6 +21,8 @@ class TestSolvePuzzle(unittest.TestCase):
                 z = puzzle([2,2,1,4])
                 assert z == True
 
+
+
         def testUnsolveable(self):
                 """Tests an unsolveable board"""
 

@@ -1,5 +1,5 @@
 def memo_solve_puzzle(board, idx=0):
-    solved = dict()
+    solved ={}
     return _solve_puzzle(board, idx, solved)
 
 
@@ -19,13 +19,12 @@ def _solve_puzzle(board, idx, solved):
         
         # if current_optimum == True:
         #     return solved[idx] == True
-
-        n = _solve_puzzle(board, move, solved)
+        if move not in solved:
+            n = _solve_puzzle(board, move, solved)
         
-        if n is not False:   
-            solved[idx] = n
-
+            if n is not False:   
+                solved[idx] = n
+                return solved[idx]
+            
     return solved[idx]
 
-
-# assert memo_solve_puzzle([2,0,0]) == True
