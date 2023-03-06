@@ -10,7 +10,6 @@ def _solve_puzzle(board, idx, solved):
     solved[idx] = idx
 
     idx_cw = (idx + board[idx]) % len(board)
-
     idx_ccw = (idx - board[idx]) % len(board)
 
     n = False
