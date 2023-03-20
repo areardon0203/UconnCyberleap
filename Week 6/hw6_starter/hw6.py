@@ -36,7 +36,13 @@ def bs_sublist(L, item, left= 0, right = None):
             left = median
     return right > left and L[left] == item
 
-def opt_insertion_sort(L): pass
+def opt_insertion_sort(L):
+    for i in range(1, len(L)):
+        item = L[i]
+        pos = bs_sublist(L, 0, i, item)
+        for j in range(i, pos, -1):
+            L[j] = L[j - 1]
+        L[pos] = item
 
 def insertion_sort(L):
     """Naive insertion sort. Adaptive, but still slow."""
@@ -50,7 +56,7 @@ def insertion_sort(L):
 if __name__ == '__main__':
     "Print out a table comparing insertion to opt_insertion"
     import timeit, random
-    random.seed = 652
+    random.seed = 10
 
     def print_table(title, L, ns):
         'helper function for printing a nice table w/ timeit'
