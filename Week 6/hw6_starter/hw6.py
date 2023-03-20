@@ -26,16 +26,16 @@ def cocktail_sort(L, swapped = True, start = 0, end = None):
 
         start += 1
 
-def bs_sublist(L, item, left= 0, right = None):
-    left, right = 0, len(L)
-    while right - left > 1:
-        median = (right + left) // 2
-        if item < L[median]:
-            right = median
+def bs_sublist(L, left, right, item):
+    while right - left > 0:
+        median = (left + right) // 2
+        if item > L[median]:
+            left = median + 1
         else:
-            left = median
-    return right > left and L[left] == item
+            right = median
+    return left 
 
+    
 def opt_insertion_sort(L):
     for i in range(1, len(L)):
         item = L[i]
@@ -54,9 +54,9 @@ def insertion_sort(L):
             else: break
 
 if __name__ == '__main__':
-    "Print out a table comparing insertion to opt_insertion"
+    # "Print out a table comparing insertion to opt_insertion"
     import timeit, random
-    random.seed = 10
+    random.seed = 100
 
     def print_table(title, L, ns):
         'helper function for printing a nice table w/ timeit'
@@ -81,7 +81,8 @@ if __name__ == '__main__':
     print_table("Random Distribution", L, ns)
 
     # L = [5, 1, 4, 2, 8, 0, 2]
-    # cocktail_sort(L)
+    # print(L)
+    # opt_insertion_sort(L)
     # print("Sorted array is:")
     # for i in range(len(L)):
-    #     print ("%d"  % L[i])
+    #     print ("%d"  % L[i], end="")

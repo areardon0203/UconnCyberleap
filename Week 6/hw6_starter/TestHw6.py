@@ -40,34 +40,38 @@ class TestCocktailSort(unittest.TestCase):
       self.assertEqual(input_list, expected_output)
       print("arbitrary done!")
 
-# class TestOptInsertionSort(unittest.TestCase):
-#    def test_Sorted(self):
-#       # Test case for a sorted list
-#       input_list = [1, 2, 3, 4, 5]
-#       expected_output = [1, 2, 3, 4, 5]
-#       opt_insertion_sort(input_list)
-#       self.assertEqual(input_list, expected_output)
+class TestOptInsertionSort(unittest.TestCase):
+   def test_Sorted(self):
+      # Test case for a sorted list
+      input_list = [1, 2, 3, 4, 5]
+      expected_output = [1, 2, 3, 4, 5]
+      opt_insertion_sort(input_list)
+      self.assertEqual(input_list, expected_output)
+      print("sorted 2 done!")
         
-#    def test_Reverse(self):
-#       # Test case for a reverse-sorted list
-#       input_list = [5, 4, 3, 2, 1]
-#       expected_output = [1, 2, 3, 4, 5]
-#       opt_insertion_sort(input_list)
-#       self.assertEqual(input_list, expected_output)
-        
-#    def test_Random(self):
-#       # Test case for a list with random elements
-#       input_list = [5, 2, 8, 4, 7, 1, 3, 6]
-#       expected_output = [1, 2, 3, 4, 5, 6, 7, 8]
-#       opt_insertion_sort(input_list)
-#       self.assertEqual(input_list, expected_output)
-        
-#    def test_ArbitrarySize(self):
-#       # Test case for a list with arbitrary size
-#       input_list = [1, 4, 2, 6, 3, 5, 8, 7, 9]
-#       expected_output = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-#       opt_insertion_sort(input_list)
-#       self.assertEqual(input_list, expected_output)
+   def test_Reverse(self):
+      # Test case for a reverse-sorted list
+      input_list = [5, 4, 3, 2, 1]
+      expected_output = [1, 2, 3, 4, 5]
+      opt_insertion_sort(input_list)
+      self.assertEqual(input_list, expected_output)
+      print("reverse  2 done!")
+
+   def test_Random(self):
+      # Test case for a list with random elements
+      input_list = [5, 2, 8, 4, 7, 1, 3, 6]
+      expected_output = [1, 2, 3, 4, 5, 6, 7, 8]
+      opt_insertion_sort(input_list)
+      self.assertEqual(input_list, expected_output)
+      print("random 2 done!")
+
+   def test_ArbitrarySize(self):
+      # Test case for a list with arbitrary size
+      input_list = [1, 4, 2, 6, 3, 5, 8, 7, 9]
+      expected_output = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      opt_insertion_sort(input_list)
+      self.assertEqual(input_list, expected_output)
+      print("arbitrary 2 done!")
 
 # bs_sublist tests are provided for you.
 class TestBinarySearchSublist(unittest.TestCase):
@@ -88,7 +92,9 @@ class TestBinarySearchSublist(unittest.TestCase):
       #                       L[1] == 'a' = 'a' goes at pos 0
       #                       L[1] > 'a' = 'a' goes at pos 0
 
-      #id:  0    1    2    3    4    5    6    7
+
+
+      # id:  0    1    2    3    4    5    6    7
       L = ['i', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
       #         |--------sorted sublist---------|
       self.assertEqual(bs_sublist(L, left=1, right=7, item='i'), 7)
