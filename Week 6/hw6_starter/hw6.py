@@ -18,7 +18,7 @@ def cocktail_sort(L, swapped = True, start = 0, end = None):
         swapped = False
 
         end -= 1
-        
+    
         for i in range(end-1, start-1, -1):
             if L[i] > L[i+1]:
                 L[i], L[i+1] = L[i+1], L[i]
@@ -55,34 +55,34 @@ def insertion_sort(L):
 
 if __name__ == '__main__':
     # "Print out a table comparing insertion to opt_insertion"
-    import timeit, random
-    random.seed = 100
+    # import timeit, random
+    # random.seed = 100
 
-    def print_table(title, L, ns):
-        'helper function for printing a nice table w/ timeit'
+    # def print_table(title, L, ns):
+    #     'helper function for printing a nice table w/ timeit'
 
-        # header
-        width = 38
-        print(title.center(width, "="))
-        print(f"{'n':<8}{'insert (ms)':<15}{'opt insert (ms)':<15}")
-        print("-"*width)
+    #     # header
+    #     width = 38
+    #     print(title.center(width, "="))
+    #     print(f"{'n':<8}{'insert (ms)':<15}{'opt insert (ms)':<15}")
+    #     print("-"*width)
 
-        # body
-        for n in ns:
-            print(f"{n:<8}", end = '')
-            print(f"{1000*timeit.timeit(f'insertion_sort(L[:{n}])', number=1, globals=globals()):<15.0f}", end = '')
-            print(f"{1000*timeit.timeit(f'opt_insertion_sort(L[:{n}])', number=1, globals=globals()):<15.0f}")
+    #     # body
+    #     for n in ns:
+    #         print(f"{n:<8}", end = '')
+    #         print(f"{1000*timeit.timeit(f'insertion_sort(L[:{n}])', number=1, globals=globals()):<15.0f}", end = '')
+    #         print(f"{1000*timeit.timeit(f'opt_insertion_sort(L[:{n}])', number=1, globals=globals()):<15.0f}")
         
-        # footer
-        print("-"*width)
+    #     # footer
+    #     print("-"*width)
 
-    ns = [1000, 2000, 3000, 4000, 5000]
-    L = [random.randint(0,ns[-1]) for i in range(ns[-1])]
-    print_table("Random Distribution", L, ns)
+    # ns = [1000, 2000, 3000, 4000, 5000]
+    # L = [random.randint(0,ns[-1]) for i in range(ns[-1])]
+    # print_table("Random Distribution", L, ns)
 
-    # L = [5, 1, 4, 2, 8, 0, 2]
-    # print(L)
-    # opt_insertion_sort(L)
-    # print("Sorted array is:")
-    # for i in range(len(L)):
-    #     print ("%d"  % L[i], end="")
+    L = [5, 1, 4, 2, 8, 0, 2]
+    print(L)
+    opt_insertion_sort(L)
+    print("Sorted array is:")
+    for i in range(len(L)):
+        print ("%d"  % L[i], end="")
