@@ -11,8 +11,8 @@ def swaps_quad(L):
 def is_sorted(L):
     return not any(L[i] > L[i+1] for i in range(len(L)-1))
 
-def swaps(L, swap_count=None):
-    if swap_count == None: swap_count = 0
+def swaps(L):
+    swap_count = 0
     #base case
     if len(L) <= 1: return swap_count
 
@@ -20,8 +20,8 @@ def swaps(L, swap_count=None):
     left = L[:median]
     right = L[median:]
 
-    swap_count = swaps(left, swap_count)
-    swap_count = swaps(right, swap_count)
+    swap_count += swaps(left)
+    swap_count += swaps(right)
 
     #Start zipping up subproblems
 
@@ -33,7 +33,7 @@ def swaps(L, swap_count=None):
         
         else:
             L[i+j] = right[j]
-            swap_count += 1
+            swap_count += len(left) - i
             j+=1
     #add remaining sublist items to L
     L[i+j:] = left[i:] + right[j:]
@@ -42,12 +42,11 @@ def swaps(L, swap_count=None):
     #return list to next level of recursion
     return swap_count
    
-x = [1,2,3,4]
-x = [1,3,2,4]
-p = swaps(x)
-print(p)
+# x = [2,4,3,1]
+# p = swaps(x)
+# print(p)
 
-# print(swaps_quad([1, 2, 3])) # should be 0
+# print(swaps_quad([2,4,3,1])) # should be 0
 # print(swaps_quad([4, 2, 3])) # should be 2: 4 is greater than 2 and 3
 # print(swaps_quad([4, 3, 2])) # should be 3: 4 > 3 and 2, and 3 > 2
 
