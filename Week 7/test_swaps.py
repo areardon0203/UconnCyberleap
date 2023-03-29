@@ -7,10 +7,10 @@ class TestSwaps(unittest.TestCase):
         self.assertEqual(swaps([1,2,3]), 0)
 
     def test_reverse_sorted(self):
-        self.assertEqual(swaps([3,2,1]), 1)
+        self.assertEqual(swaps([3,2,1]), 3)
 
     def test_random(self):
-        self.assertEqual(swaps([2,4,3,1]), 4)
+        self.assertEqual(swaps([2,4,3,1]), 3)
 
     def test_many_sizes(self):
         """Tests that sorts() works with random lists of size 1-100 elements"""

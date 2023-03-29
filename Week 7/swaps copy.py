@@ -37,17 +37,11 @@ def swaps(L, swap_count=None):
             j+=1
     #add remaining sublist items to L
     L[i+j:] = left[i:] + right[j:]
-    
 
     #return list to next level of recursion
     return swap_count
    
-x = [1,2,3,4]
-x = [1,3,2,4]
+x = [2,1,4,3]
+print(x)
 p = swaps(x)
 print(p)
-
-# print(swaps_quad([1, 2, 3])) # should be 0
-# print(swaps_quad([4, 2, 3])) # should be 2: 4 is greater than 2 and 3
-# print(swaps_quad([4, 3, 2])) # should be 3: 4 > 3 and 2, and 3 > 2
-
