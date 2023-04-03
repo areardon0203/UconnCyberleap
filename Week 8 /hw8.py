@@ -46,35 +46,35 @@ class MySet:
 
     def put(self, item):
         """adds item to MySet. Duplicate items will only be stored once."""
-        bucket = self._get_bucket(item)
-        if item not in self.buckets[bucket]:
-            self.buckets[bucket].append(item)
+        bucket = self._get_bucket(item)                 #get a bucket to store item
+        if item not in self.buckets[bucket]:            #check if it isn't already stored, append and add to size
+            self.buckets[bucket].append(item)           
             self.size += 1
-            if self.size > self.bucket_size * 0.7:
+            if self.size > self.bucket_size * 0.7:      #if the size of items is bigger than bucket, double size of bucket 
                 self._rehash(self.bucket_size * 2)
 
     def remove(self, item):
         """ removes item from MySet. If item is not in set, raise a KeyError"""
-        bucket = self._get_bucket(item)
+        bucket = self._get_bucket(item)                 #call up bucket item
         try:
-            self.buckets[bucket].remove(item)
-            self.size -= 1
+            self.buckets[bucket].remove(item)           #try to remove bucket item
+            self.size -= 1                              #reduce size by 1
         except ValueError:
-            raise KeyError(item)
+            raise KeyError(item)                        #raise key error if buckets are empty
         
     def __contains__(self, item):
         """returns True (False) if an item is (is not) in MySet"""
-        bucket = self._get_bucket(item)
-        return item in self.buckets[bucket]
+        bucket = self._get_bucket(item)                 #get bucket item
+        return item in self.buckets[bucket]             #return if item is in bucket
 
     def _rehash(self, new_size):
         """rehashes MySet to have new_size buckets"""
-        old_buckets = self.buckets
-        self.bucket_size = new_size
-        self.size = 0
-        self.buckets = [[] for i in range(new_size)]
-        for bucket in old_buckets:
-            for item in bucket:
+        old_buckets = self.buckets                      #cache current bucket list into old_buckets
+        self.bucket_size = new_size                     #set bucket size to the current size
+        self.size = 0                                   #Reset size 
+        self.buckets = [[] for i in range(new_size)]    #create buckets for the new_size variable
+        for bucket in old_buckets:                      #place items from old bucks into new buckets
+            for item in bucket: 
                 self.put(item)
     
     
