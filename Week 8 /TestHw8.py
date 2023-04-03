@@ -26,10 +26,10 @@ class TestMySet(unittest.TestCase):
         self.assertIn(4, s)
         self.assertEqual(len(s), 4)
 
-    def test_put_existing(self):
-        s = MySet([1, 2, 3])
-        s.put(3)
-        self.assertEqual(len(s), 3)
+    def test_put_bucket_size(self):
+        s = MySet([1, 2, 3,4,5,6,7,8,9,10])
+        s.put(4)
+        self.assertEqual(len(s), 10)
 
     def test_remove(self):
         s = MySet([1, 2, 3])
@@ -44,7 +44,7 @@ class TestMySet(unittest.TestCase):
 
     def test_eq(self):
         s1 = MySet([1, 2, 3])
-        s2 = MySet([1, 2, 3])
+        s2 = MySet([2, 1, 3])
         s3 = MySet([1, 2, 4])
         self.assertEqual(s1, s2)
         self.assertNotEqual(s1, s3)
