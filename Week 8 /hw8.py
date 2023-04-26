@@ -59,6 +59,8 @@ class MySet:
         try:
             self.buckets[bucket].remove(item)           #try to remove bucket item
             self.size -= 1                              #reduce size by 1
+            if self.size < self.bucket_size * 0.7:      #if the size of items is < than bucket, divide size of bucket in half
+                self._rehash(self.bucket_size // 2)
         except ValueError:
             raise KeyError(item)                        #raise key error if buckets are empty
         
