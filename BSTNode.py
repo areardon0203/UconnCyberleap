@@ -1,27 +1,3 @@
-# class Tree:
-#     def __init__(self, L):
-#         iterator = iter(L)
-#         self.data = next(iterator)
-#         self.children = [Tree(c) for c in iterator]
-
-#     def __eq__(self, other):
-#         return self.data == other.data and self.children == other.children
-
-#     def _listwithlevels(self, level, trees):
-#         trees.append(" " * level + str(self.data))
-#         for child in self.children:
-#             child._listwithlevels(level + 2, trees)
-
-#     def __str__(self):
-#         trees = []
-#         self._listwithlevels(0, trees)
-#         return "\n".join(trees)
-    
-
-# T = Tree(["a", ["b", ["c", ["d"]]],["e",["f"], ["g"],["h",["p"],["q",[1]]]]])
-                                                
-# print(str(T))
-
 # Binary Node Class
 class BSTNode:
     def __init__(self,key,value):
