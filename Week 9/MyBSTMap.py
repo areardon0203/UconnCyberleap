@@ -9,11 +9,12 @@ class MyBSTMap(BSTMap):
     # TODO: implement the three methods below
     def __eq__(self, other):
         """ADD DOCSTRING"""
-        if self.key is None and other.key is None:
+        if self.root is None and other.root is None:
             return True
-        elif self.key == other.key:
+        elif self.root == other.root:
             return True
-        
+        elif self.root != other.root:
+            return False 
              # The heavy lifting here is done in the corresponding
              # function in MyBSTNode - just tell it which node to
              # start with.
@@ -22,19 +23,28 @@ class MyBSTMap(BSTMap):
     # the class as a parameter (no `self``).
     # note the "decorator" @staticmethod - this let's python know this is not a typical "bound" method
     @staticmethod
+    
     def frompreorder(L):
-        if not L:
-            return None
-        node = MyBSTNode(L[0])
-        left_list = [x for x in L[1:] if x < L[0]]
-        right_list = [x for x in L[1:] if x > L[0]]
-        node.left = MyBSTMap.frompreorder(left_list)
-        node.right = MyBSTMap.frompreorder(right_list)
-        return node
+        if not L:                                       #checks if list is empty
+            return None                                 #returns none if it is
+        node = MyBSTNode(L[0])                          #sets node to root
+        left_list = [x for x in L[1:] if x < L[0]]      #Puts all nodes smalller than root in left list
+        right_list = [x for x in L[1:] if x > L[0]]     #Puts all nodes larger than root in right list
+        node.left = MyBSTMap.frompreorder(left_list)    #Recursively calls left node
+        node.right = MyBSTMap.frompreorder(right_list)  #Recursively calls the right node
+        return node                                     #returns root node
 
     @staticmethod
     def frompostorder(L):
-        """ADD DOCSTRING"""
+        if not L:
+            return None
+        node = MyBSTNode(L[-1])
+        left_list = [x for x in L[:-1] if x < L[-1]]
+        right_list = [x for x in L[:-1] if x > L[-1]]
+        node.left = MyBSTMap.frompostorder(left_list)
+        node.right = MyBSTMap.frompostorder(right_list)
+        return MyBSTMap(node)
+        
 
 class MyBSTNode(BSTNode):
     
