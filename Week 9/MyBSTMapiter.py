@@ -31,14 +31,19 @@ class MyBSTMap(BSTMap):
     def frompreorder(L):
         if not L:                                       #checks if list is empty
             return None                                 #returns none if it is
-                                #sets node to root
-        node = MyBSTNode(L[0])  
-        while node is not None:
-            print(node.key)
-            left_list = [x for x in L[1:] if x < L[0]]      #Puts all nodes smalller than root in left list
-            right_list = [x for x in L[1:] if x > L[0]]     #Puts all nodes larger than root in right list
-            print(left_list)
-            print(right_list)
+                                                        #sets node to root
+        root = MyBSTNode(L[0])  
+        stack = [root]
+        for val in L[1:]:
+            node = MyBSTNode(val)
+            if val < stack[-1].key:
+                stack[-1].left = node
+            else:
+                while stack and val > stack[-1].key:
+                    last = stack.pop()
+                last.right = node
+            stack.append(node)
+        return node
         
         # node.left = MyBSTMap.frompreorder(left_list)    #Recursively calls left node
         # node.right = MyBSTMap.frompreorder(right_list)  #Recursively calls the right node
@@ -74,15 +79,15 @@ class MyBSTNode(BSTNode):
             return False
         
 
-l = MyBSTMap()
-x = [5,4,6,7]
-for x in x:
-    l.put(x, str(x))
+# l = MyBSTMap()
+# x = [5,4,6,7]
+# for x in x:
+#     l.put(x, str(x))
 # print(l)
 # p = [(k,v) for (k,v) in l.preorder()]
 # print(p)
-lKey = [k for k in l.preorder()]
-L2 = MyBSTMap.frompreorder(lKey)
-print(L2)
+
+# L2 = MyBSTMap.frompreorder(p)
+# print(L2)
 
 
