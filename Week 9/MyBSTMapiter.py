@@ -29,41 +29,41 @@ class MyBSTMap(BSTMap):
     @staticmethod
     
     def frompreorder(L):
-        if not L:                                       #checks if list is empty
-            return None                                 #returns none if it is
-                                                        #sets node to root
-        root = MyBSTNode(L[0])  
-        stack = [root]
-        for val in L[1:]:
-            node = MyBSTNode(val)
-            if val < stack[-1].key:
-                stack[-1].left = node
-            else:
-                while stack and val > stack[-1].key:
-                    last = stack.pop()
-                last.right = node
-            stack.append(node)
-        return node
+        if not L:
+            return None
         
-        # node.left = MyBSTMap.frompreorder(left_list)    #Recursively calls left node
-        # node.right = MyBSTMap.frompreorder(right_list)  #Recursively calls the right node
-        # return node                                     #returns root node
+        node = MyBSTNode(L[0])
+
+        left_list = [x for x in node.left if x is not None and x < node.value]
+        right_list = [x for x in node.right if x is not None and x > node.value]
+
+        yield node
+    
+        for child in frompreorder(left_list[1:]):
+            yield child
+
+        for child in frompreorder(right_list[1:]):
+            yield child
 
 
+    @staticmethod
 
+    def frompreorder(L):
+        if not L:
+            return None
+        
+        node = MyBSTNode(L[0])
 
-    # @staticmethod
+        left_list = [x for x in node.left if x is not None and x < node.value]
+        right_list = [x for x in node.right if x is not None and x > node.value]
+    
+        for child in frompostorder(left_list[1:]):
+            yield child
 
-    # def frompostorder(L):
-    #     if not L:
-    #         return None
-    #     node = MyBSTMap(L[-1])
-    #     # print(node)
-    #     left_list = [x for x in L[:-1] if x < L[-1]]
-    #     right_list = [x for x in L[:-1] if x > L[-1]]
-    #     node.left = MyBSTMap.frompostorder(left_list)
-    #     node.right = MyBSTMap.frompostorder(right_list)
-    #     return node
+        for child in frompostorder(right_list[1:]):
+            yield child
+
+        yield node
         
 
 class MyBSTNode(BSTNode):
@@ -87,7 +87,7 @@ class MyBSTNode(BSTNode):
 # p = [(k,v) for (k,v) in l.preorder()]
 # print(p)
 
-# L2 = MyBSTMap.frompreorder(p)
+# L2 = list(MyBSTMap.frompreorder(p))
 # print(L2)
 
 

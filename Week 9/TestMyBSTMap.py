@@ -63,13 +63,13 @@ class TestMyBSTMap(unittest.TestCase):
         """ADD DOCSTRING"""
         
         bst1 = MyBSTMap()
-        for k in [3, 1, 2]:                     # Build the tree shown above
+        for k in [3, 1, 2]:                           #  Build the tree shown above
             bst1.put(k, str(k))
         print("This is bst1: ")
         print(bst1)
         # L = [(k, v) for (k, v) in bst1.preorder()]  # construct preorder list
         # bst2 = MyBSTMap.frompreorder(L)             # reconstruct the original bst
-        # bst1 == bst2              # verify trees are equal
+        # bst1 == bst2                                # verify trees are equal
 
 
 
