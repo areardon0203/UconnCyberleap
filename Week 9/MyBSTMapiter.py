@@ -5,6 +5,7 @@ class MyBSTMap(BSTMap):
     
     def newnode(self, key, value = None): 
         return MyBSTNode(key, value)    # overloads the `newnode` method to use MyBSTNode() instead of BSTNode()
+        
 
     def __eq__(self, other):
         """Check if two BSTs are equal"""
@@ -27,43 +28,26 @@ class MyBSTMap(BSTMap):
     # the class as a parameter (no `self``).
     # note the "decorator" @staticmethod - this let's python know this is not a typical "bound" method
     @staticmethod
-    
-    def frompreorder(L):
-        if not L:
-            return None
-        
-        node = MyBSTNode(L[0])
-
-        left_list = [x for x in node.left if x is not None and x < node.value]
-        right_list = [x for x in node.right if x is not None and x > node.value]
-
-        yield node
-    
-        for child in frompreorder(left_list[1:]):
-            yield child
-
-        for child in frompreorder(right_list[1:]):
-            yield child
-
-
-    @staticmethod
 
     def frompreorder(L):
         if not L:
             return None
-        
-        node = MyBSTNode(L[0])
-
-        left_list = [x for x in node.left if x is not None and x < node.value]
-        right_list = [x for x in node.right if x is not None and x > node.value]
+        # Create root node
+        tree1 = MyBSTMap()
+        tree1.put(L[0])                 #adds root to MyBSTMap
+        for i in range(1, len(L)):      #adds the remaining nodes to list
+            tree1.put(L[i])
+        return tree1                    #Returns the tree
     
-        for child in frompostorder(left_list[1:]):
-            yield child
-
-        for child in frompostorder(right_list[1:]):
-            yield child
-
-        yield node
+    # def frompostorder(L):
+    #     if not L:
+    #         return None
+    #     # Create root node
+    #     tree1 = MyBSTMap()
+    #     tree1.put(L[0])
+    #     for i in range(1, len(L)):
+    #         tree1.put(L[i])
+    #     return tree1
         
 
 class MyBSTNode(BSTNode):
@@ -78,16 +62,3 @@ class MyBSTNode(BSTNode):
         else:
             return False
         
-
-# l = MyBSTMap()
-# x = [5,4,6,7]
-# for x in x:
-#     l.put(x, str(x))
-# print(l)
-# p = [(k,v) for (k,v) in l.preorder()]
-# print(p)
-
-# L2 = list(MyBSTMap.frompreorder(p))
-# print(L2)
-
-

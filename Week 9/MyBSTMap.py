@@ -27,38 +27,37 @@ class MyBSTMap(BSTMap):
     # the class as a parameter (no `self``).
     # note the "decorator" @staticmethod - this let's python know this is not a typical "bound" method
     @staticmethod
-    
+
     def frompreorder(L):
-        # if not L:                                       #checks if list is empty
-        #     return None                                 #returns none if it is
-        # node = MyBSTNode(L[0])                   #sets node to root
-        # left_list = [x for x in L[1:] if x < L[0]]      #Puts all nodes smalller than root in left list
-        # right_list = [x for x in L[1:] if x > L[0]]     #Puts all nodes larger than root in right list
-        # node.left = MyBSTMap.frompreorder(left_list)    #Recursively calls left node
-        # node.right = MyBSTMap.frompreorder(right_list)  #Recursively calls the right node
-        # return node                                     #returns root node
         if not L:
             return None
-        node = MyBSTNode(L[0])
-        left_list = [x for x in L[1:] if x < L[0]]
-        right_list = [x for x in L[1:] if x > L[0]]
-        node.left = MyBSTMap.frompreorder(left_list)
-        node.right = MyBSTMap.frompreorder(right_list)
-        return MyBSTMap(node)    
+        # Create root node
+        tree1 = MyBSTMap().newnode(L[0])
+        stack = [tree1]
+        for i in range(1,len(L)):          #adds the remaining nodes to list
+            node = MyBSTMap().newnode(L[i])
+            parent = None
+            while stack and stack[-1].key < node.key:
+                parent = stack.pop()
+            
+            if parent:
+                if not parent.left:
+                    parent.left = node
+                else:
+                    parent.right = node
 
-
-    @staticmethod
-
-    def frompostorder(L):
-        if not L:
-            return None
-        node = MyBSTMap(L[-1])
-        # print(node)
-        left_list = [x for x in L[:-1] if x < L[-1]]
-        right_list = [x for x in L[:-1] if x > L[-1]]
-        node.left = MyBSTMap.frompostorder(left_list)
-        node.right = MyBSTMap.frompostorder(right_list)
-        return node
+            stack.append(node)
+        return stack                      #Returns the tree
+    
+    # def frompostorder(L):
+    #     if not L:
+    #         return None
+    #     # Create root node
+    #     tree1 = MyBSTMap()
+    #     tree1.put(L[0])
+    #     for i in range(1, len(L)):
+    #         tree1.put(L[i])
+    #     return tree1
         
 
 class MyBSTNode(BSTNode):
@@ -72,17 +71,13 @@ class MyBSTNode(BSTNode):
             return self.key == other.key and self.value == other.value and self.left == other.left and self.right == other.right
         else:
             return False
-        
 
-# l = MyBSTMap()
-# x = [5,4,6,7]
-# for x in x:
-#     l.put(x, str(x))
-# # print(l)
 
-# p = [(k,v) for (k,v) in l.preorder()]
-
-# print(p)
-# L2 = MyBSTMap.frompreorder(p)
-
-# print(L2)
+if __name__ == "__main__":        
+    bst1 = MyBSTMap()
+    for k in [3, 1, 2]:                                #  Build the tree shown above
+        bst1.put(k, str(k))
+    print(bst1)
+    L = [(k, v) for (k, v) in bst1.preorder()]         # construct preorder list
+    bst2 = MyBSTMap.frompreorder(L)                    # reconstruct the original bst
+    print(bst1 == bst2)
