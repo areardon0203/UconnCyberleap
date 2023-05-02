@@ -5,6 +5,7 @@ class MyBSTMap(BSTMap):
     
     def newnode(self, key, value = None): 
         return MyBSTNode(key, value)    # overloads the `newnode` method to use MyBSTNode() instead of BSTNode()
+        
 
     def __eq__(self, other):
         """Check if two BSTs are equal"""
@@ -32,32 +33,27 @@ class MyBSTMap(BSTMap):
         if not L:
             return None
         # Create root node
-        tree1 = MyBSTMap().newnode(L[0])
-        stack = [tree1]
-        for i in range(1,len(L)):          #adds the remaining nodes to list
-            node = MyBSTMap().newnode(L[i])
-            parent = None
-            while stack and stack[-1].key < node.key:
-                parent = stack.pop()
-            
-            if parent:
-                if not parent.left:
-                    parent.left = node
-                else:
-                    parent.right = node
-
-            stack.append(node)
-        return stack                      #Returns the tree
+        tree1 = MyBSTMap()
+        tree1.put(L[0][0],L[0][1])             #adds key value pair as root to MyBSTMap
+        for i in range(1, len(L)):             #adds the remaining nodes to list
+            k = L[i][0]
+            v = L[i][1]
+            tree1.put(k,v)
+        return tree1                           #Returns the rebuilt tree
     
-    # def frompostorder(L):
-    #     if not L:
-    #         return None
-    #     # Create root node
-    #     tree1 = MyBSTMap()
-    #     tree1.put(L[0])
-    #     for i in range(1, len(L)):
-    #         tree1.put(L[i])
-    #     return tree1
+
+    def frompostorder(L):
+        if not L:
+            return None
+        # Create root node
+        tree1 = MyBSTMap()
+        tree1.put(L[-1][0],L[-1][1])           #adds last node key, value pair as root to MyBSTMap(which is last node in postorder)
+        for i in range(len(L)-2, -1, -1):      #adds the remaining nodes to list
+            k = L[i][0]
+            v = L[i][1]
+            tree1.put(k,v)
+        
+        return tree1                            #Returns the tree
         
 
 class MyBSTNode(BSTNode):
@@ -71,13 +67,23 @@ class MyBSTNode(BSTNode):
             return self.key == other.key and self.value == other.value and self.left == other.left and self.right == other.right
         else:
             return False
+        
+if __name__ == "__main__":   
 
-
-if __name__ == "__main__":        
+# Pre order test     
     bst1 = MyBSTMap()
     for k in [3, 1, 2]:                                #  Build the tree shown above
         bst1.put(k, str(k))
     print(bst1)
     L = [(k, v) for (k, v) in bst1.preorder()]         # construct preorder list
     bst2 = MyBSTMap.frompreorder(L)                    # reconstruct the original bst
+    print(bst1 == bst2)
+
+# Post order test
+    bst1 = MyBSTMap()
+    for k in [3, 1, 2]:                                #  Build the tree shown above
+        bst1.put(k, str(k))
+    print(bst1)
+    L = [(k, v) for (k, v) in bst1.postorder()]         # construct preorder list
+    bst2 = MyBSTMap.frompostorder(L)                    # reconstruct the original bst
     print(bst1 == bst2)
