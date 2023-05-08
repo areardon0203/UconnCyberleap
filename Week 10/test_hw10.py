@@ -1,66 +1,37 @@
-class Entry:
-    def __init__(self, item, priority):
-        self.priority = priority
-        self.item = item
+import unittest 
+from hw10 import Entry, Heap
 
-    def __lt__(self,other):
-        return self.priority < other.priority
-    
-class HeapPQ:
-    def __init__(self):
-        self._entries = []
 
-    def insert(self,item,priority):
-        self._entries.append(entry(item,priority))
+class TestEntry(unittest.TestCase):
+    def test_one_level_priority(self):
+        e1 = Entry(priority=[0], item ="Jake")
+        e2 = Entry(priority=[1], item="Rachel")
+        assert(e2 > e1)
+        print("Passed 1 level!")
+    def test_two_level_priority(self):
+        e1 = Entry(priority=[1,"a"], item ="Jake")
+        e2 = Entry(priority=[1,"b"], item="Rachel")
+        e3= Entry(priority=[0,"C"], item="Tobias")
+        assert(e2 > e1)
+        print("Passed 2 level!")
 
-    def _parent(self,i):
-        return (i - 1) // 2
-    
-    def _children(self, i):
-        left = 2 * i + 1
-        right = 2 * i + 2
-        return range(left, min(len(self_entries),right + 1))
-        
-    def _swap(self, a, b):
-        L = self._entries
-        L[a],L[b] = L[b], L[a]
+    def test_three_level_priority(self):
+        e1 = Entry(priority=[1,"a",3.72], item ="Jake")
+        e2 = Entry(priority=[1,"b",4.73], item="Rachel")
+        assert(e2 > e1)
+        print("Passed 3 level!")
 
-    def _upheap(self, i):
-        L = self._entries
-        parent = self._parent(i)
-        if i > 0 and L[i] < L[parent]:
-            self._swap(i, parent)
-            self._upheap(parent)
-    def findmin(self):
-        return self._entries[0].item
+    def test_unequal_priority_list_length(self):
+        e1 = Entry(priority=[0],item="")
+        e2 = Entry(priority=[0,"b"],item="")
+        assert(e2 > e1)
+        assert(e1 < e2)
+        print("Passed smallest priority")
 
-    def removemin(self):
-        L = self._entries
-        item = L[0].item
-        L[0] = L[-1]
-        L.pop()
-        self._downheap(0)
-        return item
 
-    def _downheap(self, i):
-        L = self._entries
-        children = self._children(i)
-        if children:
-            child = min(children, key = lambda x: L[x])
-            if L[child] < L[i]:
-                self._swap(i,child)
-                self._downheap(child)
-
-    def __len__(self):
-        return len(self._entries)
+class TestMaxHeap(unittest.TestCase):
+    pass
 
 
 
-if __name__ == '__main__':
-    S = SortedListPQ()
-    S.insert("ham", 3)
-    S.insert("cheese", 1)
-    S.insert("bread", 2)
-    S.insert("pasta", 4)
-    S.insert("calzone", 1)
-    print([S.removemin() for i in [1,2,3,4]])
+unittest.main()
