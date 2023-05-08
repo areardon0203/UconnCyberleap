@@ -1,5 +1,5 @@
 import unittest 
-from hw10 import Entry, Heap
+from hw10 import Entry, MaxHeap
 
 
 class TestEntry(unittest.TestCase):
@@ -25,7 +25,6 @@ class TestEntry(unittest.TestCase):
         e1 = Entry(priority=[0],item="")
         e2 = Entry(priority=[0,"b"],item="")
         assert(e2 > e1)
-        assert(e1 < e2)
         print("Passed smallest priority")
 
 

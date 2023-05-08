@@ -26,8 +26,13 @@ class Entry:
         # If all priorities are equal, compare items
         return self.item > other.item
     
+    def __eq__(self, other):
+        return self.priority == other.priority and self.item == other.item
     
-class Heap:
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+class MaxHeap:
     def __init__(self):
         self._entries = []
 
@@ -40,7 +45,7 @@ class Heap:
     def _children(self, i):
         left = 2 * i + 1
         right = 2 * i + 2
-        return range(left, min(len(self_entries),right + 1))
+        return range(left, min(len(self._entries), right + 1))
         
     def _swap(self, a, b):
         L = self._entries
@@ -49,13 +54,16 @@ class Heap:
     def _upheap(self, i):
         L = self._entries
         parent = self._parent(i)
-        if i > 0 and L[i] < L[parent]:
+        if i > 0 and L[i] > L[parent]:
             self._swap(i, parent)
             self._upheap(parent)
-    def findmin(self):
+            
+    def findmax(self):
         return self._entries[0].item
 
-    def removemin(self):
+    def removemax(self):
+        if len(self._entries) == 0:
+            raise RuntimeError("Cannot remove from an empty heap")
         L = self._entries
         item = L[0].item
         L[0] = L[-1]
@@ -67,8 +75,8 @@ class Heap:
         L = self._entries
         children = self._children(i)
         if children:
-            child = min(children, key = lambda x: L[x])
-            if L[child] < L[i]:
+            child = max(children, key = lambda x: L[x])
+            if L[child] > L[i]:
                 self._swap(i,child)
                 self._downheap(child)
 
