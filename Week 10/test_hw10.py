@@ -60,14 +60,14 @@ class TestMaxHeap(unittest.TestCase):
     def test_insert_and_findmax(self):
         insertions = [('A', 5), ('B', 10), ('C', 3), ('D', 8)]
         for item, priority in insertions:
-            self.heap.insert(item, priority)
+            self.heap.put(item, priority)
         self.assertEqual(self.heap.findmax(), 'B')
         print("Find Max Successful")
 
     def test_removemax(self):
         insertions = [('A', 5), ('B', 10), ('C', 3), ('D', 8)]
         for item, priority in insertions:
-            self.heap.insert(item, priority)
+            self.heap.put(item, priority)
         max_item = self.heap.removemax()
         self.assertEqual(max_item, 'B')
         self.assertEqual(self.heap.findmax(), 'D')
@@ -78,7 +78,7 @@ class TestMaxHeap(unittest.TestCase):
     def test_len(self):
         insertions = [('A', 5), ('B', 10), ('C', 3), ('D', 8)]
         for item, priority in insertions:
-            self.heap.insert(item, priority)
+            self.heap.put(item, priority)
         self.assertEqual(len(self.heap), 4)
         self.heap.removemax()
         self.assertEqual(len(self.heap), 3)

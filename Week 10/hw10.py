@@ -36,7 +36,7 @@ class MaxHeap:
     def __init__(self):
         self._entries = []
 
-    def insert(self, item, priority):
+    def put(self, item, priority):
         self._entries.append(Entry(item, priority))
         self._upheap(len(self._entries) - 1)
 
