@@ -9,14 +9,18 @@ class AdjacencySet:
     def remove_vertex(self, v):
         self.V.remove(v)
 
-    def add_edge(self, e):
+    def add_edge(self, e, weight):
         a, b = e
         if a not in self.nbrs:
-            self.nbrs[a] = {b}
+            self.nbrs[a] = {b: weight}
         else:
-            self.nbrs[a].add(b)
+            self.nbrs[a][b] = weight
 
-        self.nbrs[a].add(b)
+        # If the graph is undirected, you may also add the reverse edge with the same weight
+        if b not in self.nbrs:
+            self.nbrs[b] = {a: weight}
+        else:
+            self.nbrs[b][a] = weight
 
     def remove_edge(self, e):
         a, b = self.nbrs[a].remove(b)
@@ -50,7 +54,12 @@ class Graph(AdjacencySet):
 
         while to_visit:
             a, b = to_visit.pop() # a,b = (parent, child)
-               
+            if b not in tree:
+                tree[b] = a
+                for n in self._neighbors(b):
+                    to_visit.append((b,n))
+
+        return tree
 
 if __name__ == '__main__':
     g = Graph()
@@ -72,4 +81,5 @@ if __name__ == '__main__':
         print()
 
     print(f"dfs(4) = {g.dfs(4)}")
-    
+    print()
+    print(f"dfs_iter(4) = {g.dfs_iter(4)}")
