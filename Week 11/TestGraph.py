@@ -85,8 +85,8 @@ class test_GraphTraversal(unittest.TestCase):
 
 
     # TODO: Which alg do you use here, and why?
-    # Alg:Dijkstra's Search
-    # Why: Because it is returning the it is building a dictionary of all the minimum distances to each city.
+    # Alg: Prim's Algorithm
+    # Why: Because it is return the minimum distance of all nodes
     def test_salt(self):
         """ADD DOCSTRING"""
         minimum_distance = self.g.salt()
